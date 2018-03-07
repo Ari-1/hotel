@@ -4,30 +4,25 @@ require_relative 'reservation'
 require_relative 'room'
 
 module Hotel
-  class Front_Desk
+  class Front_desk
 
-    attr_reader :rooms, :reservations
+    attr_reader :total_rooms, :reservations
 
     def initialize
       # an array of rooms
-      @rooms = []
+      @total_rooms = []
       count = 1
       Room::ROOM_ID.each do |room|
-        @rooms << Room.new(
-          {
-            room_number: count,
-            dates_reserved: []
-          }
-        )
+        @total_rooms << Room.new([count])
         count += 1
       end
-      @reservation = []
+      @reservations = []
     end
 
     # list of all rooms
     def room_data
-      @rooms.each do |room|
-        return room
+      @total_rooms.each do |r|
+        return "#{r.room_id}"
       end
     end
 
@@ -45,7 +40,7 @@ module Hotel
       new_ticket[:start_date] = Date.parse(start_date)
       new_ticket[:end_date] = Date.parse(end_date)
 
-      new_reserve = Reservaton.new(new_ticket)
+      new_reserve = Hotel::Reservation.new(new_ticket)
 
       @reservations << new_reserve
       return new_reserve
@@ -54,7 +49,7 @@ module Hotel
     # to check availablity
     def check_date(date)
       check_day = Date.parse(date)
-      @rooms.each do |room|
+      @total_rooms.each do |room|
         room[:date_range].each do |day|
           if room[:date_range].include(check_day)
             return "Room ##{[:room_number]} is reserved"
