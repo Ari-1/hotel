@@ -23,8 +23,10 @@ describe 'Front_desk' do
   describe 'room data' do
     it 'returns a list of all rooms' do
     end
-    # room = Hotel::Front_desk.new
-    # room.room_data.must_be_kind_of Array
+    admin = Hotel::Front_desk.new
+    room = Hotel::Room.new([1])
+    admin.room_data.must_respond_to room
+    admin.room_data.must_output 1
     end
 
   describe 'reservation data' do

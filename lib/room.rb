@@ -3,22 +3,25 @@ require 'date'
 module Hotel
   class Room
 
-    ROOM_ID = (1..20)
 
-    attr_reader :room_id, :status
+    attr_reader :room_id, :date_range
 
     def initialize(room)
-      @room_id = room[0]
-      @dates_reserved = room[1] = nil ? [] : room[1]
-
-      # unless @room_id =~ ROOM_ID
-      #   raise ArgumentError ("Invalid Room Number")
-      # end
+      @room_id = room[:room_id]
+      @date_range = []
+#
+      unless Front_desk::ROOM_ID.include?(@room_id)
+        raise StandardError("INVALID ID")
+      end
     end
 
-    def add_reservation(input)
-
-    end
-
+#
+#     def available(start_date, end_date)
+#     end
+#
+#     def add_reservation(input)
+#
+#     end
+#
   end
 end
