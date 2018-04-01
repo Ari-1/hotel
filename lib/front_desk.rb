@@ -13,6 +13,7 @@ module Hotel
     def initialize
       # an array of rooms
       @total_rooms = room_generator
+      @total_reservations = []
     end
 
     # list of all rooms
@@ -22,28 +23,28 @@ module Hotel
         @total_rooms << Room.new(count)
       count += 1
       end
+      return @total_rooms
     end
 
     def list_rooms
       return @total_rooms
     end
     # list of all reservations
-    def reservation_data
-      return Hotel::Reservation.all
+    def list_reservations
+      return @total_reservations
     end
 
-    def valid_date?(str, format = "%m/%d/%Y")
-      Date.strptime(str,format) rescue false
+    def available_rooms(start_date, end_date)
+      first_date = DateTime.parse(start_date)
+       =
     end
 
     # to create a reservation
     def add_room(start_date, end_date)
-      if valid_date?(start_date)
-        if valid_date?(end_date)
           new_ticket = {}
           new_ticket[:ticket_id] = reservation_data.length + 1
-          new_ticket[:start_date] = Date.parse(start_date)
-          new_ticket[:end_date] = Date.parse(end_date)
+          new_ticket[:start_date] = DateTime.parse(start_date)
+          new_ticket[:end_date] = DateTime.parse(end_date)
 
           @total_rooms.find do |room|
             new_ticket[:room_id] = room.sample
