@@ -16,7 +16,7 @@ module Hotel
       @room = input[:room_id]
       @@count += 1
 
-      unless @end_date > @start_date
+      if @end_date < @start_date
         raise StandardError('Invalid Date Range')
       end
 
