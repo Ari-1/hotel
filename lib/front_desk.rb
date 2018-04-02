@@ -58,7 +58,6 @@ module Hotel
     def add_room(start_date, end_date)
       new_ticket = {}
       new_ticket[:ticket_id] = 0
-
       available = available?(start_date, end_date)
 
       new_ticket[:room_id] = available[0]

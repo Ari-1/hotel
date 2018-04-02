@@ -9,19 +9,17 @@ module Hotel
     @@count = 1
 
     def initialize(input)
+
       @ticket_id = @@count
       @start_date = input[:start_date]
       @end_date = input[:end_date]
       @room = input[:room_id]
       @@count += 1
 
-      correct_date
-    end
-
-    def correct_date
-      if @end_date < @start_date
-        raise ArgumentError('Invalid Date Range')
+      unless @end_date > @start_date
+        raise StandardError('Invalid Date Range')
       end
+
     end
 
 
