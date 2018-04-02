@@ -7,7 +7,7 @@ module Hotel
     attr_reader :room_id, :price, :reservations
 
     def initialize(room)
-      @room_id = number
+      @room_id = room
       @price = 200
       @reservations = []
 #
